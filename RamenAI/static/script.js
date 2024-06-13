@@ -39,30 +39,3 @@ document.getElementById('inputForm').addEventListener("submit", function(event) 
 
     document.getElementById('user-input').value = '';
 });
-
-
-/*
-// Function to fetch and display previous conversations
-function fetchConversations() {
-    fetch(`${BASE_URL}/api/conversations`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': "application/json"
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        data.forEach(conversation => {
-            const messageBubble = createMessageBubble(conversation.content, 
-                conversation.role === 'user' ? ['message-bubble', 'user-message'] : ['chat-response']);
-            appendMessageBubble(messageBubble);
-        });
-    });
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    fetchConversations(); // Load conversations when the page loads
-});
-
-
-*/

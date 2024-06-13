@@ -44,8 +44,23 @@ def logout():
 @app.route("/")
 @login_required
 def chat():
-    return render_template("chat.html")
+    try:
+        db = get_db()
+        conversations_collection = db['conversations']
+        user_id = session.get('idUsuario')
+        
+        # Fetch conversation history for the current user from MongoDB
+        conversation_history = list(conversations_collection.find({"userId": user_id}))
 
+        # Filter out system messages
+        conversation_history = [message for message in conversation_history if message["role"] != "system"]
+
+        return render_template("chat.html", conversation_history=conversation_history)
+    
+    except Exception as e:
+        print(f"Error fetching conversation history: {e}")
+        flash("Error fetching conversation history")
+        return redirect(url_for("login_get"))
 
 # Setup OpenAI API key from app.config
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -60,9 +75,11 @@ def maruchat():
         db = get_db()
         conversations_collection = db['conversations']
 
-        user_id = request.headers.get('UserId')  # Assuming userId is passed in headers
+        user_id = session.get('idUsuario')
+        print("USER_ID")
+        print(user_id)
+       
         user_input = request.json.get('userInput')
-
         if user_input:
             conversation_history.append({"role": "user", "content": user_input})
 
@@ -73,7 +90,6 @@ def maruchat():
             max_tokens=500,  # Adjust as needed
             stop=None  # Customize stop conditions if required
         )
-        print(response.choices[0].message)
 
         chat_response = response.choices[0].message.content
         conversation_history.append({"role": "assistant", "content": chat_response})
