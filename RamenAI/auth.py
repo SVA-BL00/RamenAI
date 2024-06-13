@@ -1,3 +1,5 @@
+"""Authentication strategy for Google."""
+
 from authlib.jose import jwt
 from flask import redirect, url_for, session
 from .app import app, google, mysql
@@ -5,6 +7,7 @@ from .app import app, google
 
 @app.route("/auth/login/authorized")
 def authorized():
+    """Route that receives access token with user info."""
     token = google.authorize_access_token()
     session["user"] = token["userinfo"]["name"]
     session["email"] = token["userinfo"]["email"]

@@ -1,3 +1,5 @@
+"""Defines app global configurations."""
+
 import os
 from flask import Flask
 from dotenv import load_dotenv
@@ -33,6 +35,7 @@ CORS(app)
 
 @app.after_request
 def set_secure_headers(response):
+    """Returns response object before going to client, used for testing."""
     secure_headers.framework.flask(response)
     return response
 
