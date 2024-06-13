@@ -8,9 +8,7 @@ from flask_mysqldb import MySQL
 from authlib.integrations.flask_client import OAuth
 import secure
 
-
 load_dotenv()
-
 
 app = Flask(__name__, instance_relative_config=True)
 app.secret_key = os.urandom(24)
