@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 
+
 class Conversation:
     def __init__(self, user_id, role, content, timestamp):
         self.user_id = user_id
@@ -12,5 +13,5 @@ class Conversation:
             "userId": self.user_id,
             "role": self.role,
             "content": self.content,
-            "timestamp": self.timestamp
+            "timestamp": self.timestamp,
         }

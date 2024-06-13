@@ -14,8 +14,8 @@ app = Flask(__name__, instance_relative_config=True)
 app.secret_key = os.urandom(24)
 
 
-app.config['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY')
-app.config['MONGO_URI'] = os.getenv('MONGO_URI')
+app.config["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 
 # MySQL configurations

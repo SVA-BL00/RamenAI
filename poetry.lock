@@ -475,6 +475,34 @@ trio = ["trio (>=0.23)"]
 wmi = ["wmi (>=1.5.1)"]
 
 [[package]]
+name = "faker"
+version = "24.14.1"
+description = "Faker is a Python package that generates fake data for you."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "Faker-24.14.1-py3-none-any.whl", hash = "sha256:a5edba3aa17a1d689c8907e5b0cd1653079c2466a4807f083aa7b5f80a00225d"},
+    {file = "Faker-24.14.1.tar.gz", hash = "sha256:380a3697e696ae4fcf50a93a3d9e0286fab7dfbf05a9caa4421fa4727c6b1e89"},
+]
+
+[package.dependencies]
+python-dateutil = ">=2.4"
+
+[[package]]
+name = "faker-openai-api-provider"
+version = "0.2.0"
+description = "Generate fake data that resembles fields in OpenAI API responses"
+optional = false
+python-versions = "<4.0,>=3.9"
+files = [
+    {file = "faker_openai_api_provider-0.2.0-py3-none-any.whl", hash = "sha256:67d46f159810cd02e5c4fad6f3714b9f83188c3ee74a126e3aaf013f88f7a2e0"},
+    {file = "faker_openai_api_provider-0.2.0.tar.gz", hash = "sha256:168ecfd4ad06113ad64de9ee095e5e88593b575145efd4e8b84cba602e73c7d3"},
+]
+
+[package.dependencies]
+faker = ">=24.2.0,<25.0.0"
+
+[[package]]
 name = "flask"
 version = "3.0.3"
 description = "A simple framework for building complex web applications."
@@ -711,6 +739,21 @@ files = [
 ]
 
 [[package]]
+name = "mongomock"
+version = "4.1.2"
+description = "Fake pymongo stub for testing simple MongoDB-dependent code"
+optional = false
+python-versions = "*"
+files = [
+    {file = "mongomock-4.1.2-py2.py3-none-any.whl", hash = "sha256:08a24938a05c80c69b6b8b19a09888d38d8c6e7328547f94d46cadb7f47209f2"},
+    {file = "mongomock-4.1.2.tar.gz", hash = "sha256:f06cd62afb8ae3ef63ba31349abd220a657ef0dd4f0243a29587c5213f931b7d"},
+]
+
+[package.dependencies]
+packaging = "*"
+sentinels = "*"
+
+[[package]]
 name = "mypy-extensions"
 version = "1.0.0"
 description = "Type system extensions for programs checked with the mypy type checker."
@@ -743,6 +786,24 @@ typing-extensions = ">=4.7,<5"
 
 [package.extras]
 datalib = ["numpy (>=1)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)"]
+
+[[package]]
+name = "openai-responses"
+version = "0.7.0"
+description = "🧪🤖 Pytest plugin for automatically mocking OpenAI requests"
+optional = false
+python-versions = "<4.0,>=3.9"
+files = [
+    {file = "openai_responses-0.7.0-py3-none-any.whl", hash = "sha256:037f8d652fde1f308afadaedb38265d124f50c2def1a77525e1b328ec8184af0"},
+    {file = "openai_responses-0.7.0.tar.gz", hash = "sha256:5faf6cd0c80a26a14efa09050439a94521e9c801bb8c792b249e281b535155d1"},
+]
+
+[package.dependencies]
+faker = ">=24.2.0,<25.0.0"
+faker-openai-api-provider = "0.2.0"
+openai = ">=1.32,<1.35"
+requests-toolbelt = ">=1.0.0,<2.0.0"
+respx = ">=0.20.2,<0.21.0"
 
 [[package]]
 name = "packaging"
@@ -1082,6 +1143,20 @@ pytest = ">=6.2.5"
 dev = ["pre-commit", "pytest-asyncio", "tox"]
 
 [[package]]
+name = "python-dateutil"
+version = "2.9.0.post0"
+description = "Extensions to the standard Python datetime module"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+files = [
+    {file = "python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"},
+    {file = "python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"},
+]
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
 name = "requests"
 version = "2.32.3"
 description = "Python HTTP for Humans."
@@ -1103,6 +1178,34 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "requests-toolbelt"
+version = "1.0.0"
+description = "A utility belt for advanced users of python-requests"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+files = [
+    {file = "requests-toolbelt-1.0.0.tar.gz", hash = "sha256:7681a0a3d047012b5bdc0ee37d7f8f07ebe76ab08caeccfc3921ce23c88d5bc6"},
+    {file = "requests_toolbelt-1.0.0-py2.py3-none-any.whl", hash = "sha256:cccfdd665f0a24fcf4726e690f65639d272bb0637b9b92dfd91a5568ccf6bd06"},
+]
+
+[package.dependencies]
+requests = ">=2.0.1,<3.0.0"
+
+[[package]]
+name = "respx"
+version = "0.20.2"
+description = "A utility for mocking out the Python HTTPX and HTTP Core libraries."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "respx-0.20.2-py2.py3-none-any.whl", hash = "sha256:ab8e1cf6da28a5b2dd883ea617f8130f77f676736e6e9e4a25817ad116a172c9"},
+    {file = "respx-0.20.2.tar.gz", hash = "sha256:07cf4108b1c88b82010f67d3c831dae33a375c7b436e54d87737c7f9f99be643"},
+]
+
+[package.dependencies]
+httpx = ">=0.21.0"
+
+[[package]]
 name = "secure"
 version = "0.3.0"
 description = "A lightweight package that adds security headers for Python web frameworks."
@@ -1111,6 +1214,27 @@ python-versions = ">=3.6"
 files = [
     {file = "secure-0.3.0-py3-none-any.whl", hash = "sha256:a93b720c7614809c131ca80e477263140107c6c212829d0a6e1f7bc8d859c608"},
     {file = "secure-0.3.0.tar.gz", hash = "sha256:6e30939d8f95bf3b8effb8a36ebb5ed57f265daeeae905e3aa9677ea538ab64e"},
+]
+
+[[package]]
+name = "sentinels"
+version = "1.0.0"
+description = "Various objects to denote special meanings in python"
+optional = false
+python-versions = "*"
+files = [
+    {file = "sentinels-1.0.0.tar.gz", hash = "sha256:7be0704d7fe1925e397e92d18669ace2f619c92b5d4eb21a89f31e026f9ff4b1"},
+]
+
+[[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+files = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 
 [[package]]
@@ -1203,4 +1327,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "c5cc25e2bb2ffc94858e8f12a9d2fe46a61957697948d4e6890ea5ca206419a1"
+content-hash = "2104f31ce85d4b1626c928316f7c1fc5b642cf01b6207a761c3809a6d29504f1"
