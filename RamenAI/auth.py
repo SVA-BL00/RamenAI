@@ -23,11 +23,17 @@ def authorized():
         result = cursor.fetchone()
         if result:
             session["idUsuario"] = int(result[0])
-            print("sessionidUsuario")
-            print(session["idUsuario"])
         else:
             mysql.connection.rollback()
     finally:
         cursor.close()
+    
+    # Initialize conversation history in session
+    session["conversation_history"] = [
+        {
+            "role": "system",
+            "content": "Eres un excelente cocinero y experto en ramen. Eres bueno en descubrir e inventar nuevas formas de preparar y disfrutar ramen en casa. Das recetas sencillas e instrucciones concisas. Siempre contesta en máximo 500 tokens.",
+        }
+    ]
 
     return redirect(url_for("chat"))
