@@ -15,16 +15,18 @@ app.secret_key = os.urandom(24)
 
 
 app.config["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+app.config["MONGO_URI"] = "mongodb://chatbot:27017/maruchat"
 
 
 # MySQL configurations
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = 'auth'
 app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 mysql = MySQL(app)
 
+# MongoDB URI
+app.config["MONGO_URI"] = "mongodb://chatbot:27017/maruchat"
 
 secure_headers = secure.Secure(server=secure.Server())
 

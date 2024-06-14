@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  auth:
+    build:
+      context: ./RamenAI
+      dockerfile: Dockerfile.auth
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}  # Set MySQL root password
+      - MYSQL_DATABASE=${MYSQL_DATABASE}  # Specify MySQL database name
+    ports:
+      - "3306:3306" # Expose MySQL port
+    volumes:
+      - ./RamenAI/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  chatbot:
+    build:
+      context: ./RamenAI
+      dockerfile: Dockerfile.chatbot
+    ports:
+      - "27017:27017" # Expose MongoDB port

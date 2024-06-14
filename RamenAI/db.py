@@ -7,7 +7,7 @@ from .app import app
 
 def get_db():
     """Getter for database."""
-    client = MongoClient(os.getenv("MONGO_URI"))
+    client = MongoClient("mongodb://chatbot:27017/maruchat")
     return client["maruchat"]
 
 
