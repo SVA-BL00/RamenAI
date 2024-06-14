@@ -6,9 +6,9 @@ import os
 from flask import render_template, request, redirect, url_for, flash, session, jsonify
 import openai
 from pymongo import MongoClient
-from .app import app
-from .db import get_db, init_db
-from .auth import google
+from app import app
+from db import get_db, init_db
+from auth import google
 
 init_db()
 

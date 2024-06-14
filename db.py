@@ -2,7 +2,7 @@
 
 import os
 from pymongo import MongoClient
-from .app import app
+from app import app
 
 
 def get_db():
