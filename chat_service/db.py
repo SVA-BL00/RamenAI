@@ -1,15 +1,10 @@
-"""Database handling."""
-
-import os
 from pymongo import MongoClient
-from .app import app
-
+import os
 
 def get_db():
     """Getter for database."""
     client = MongoClient(os.getenv("MONGO_URI"))
-    return client["maruchat"]
-
+    return client["chat_service_db"]
 
 def init_db():
     """Initialize database."""

@@ -1,0 +1,9 @@
+Flask
+Flask-Cors
+Flask-MySQLdb
+authlib
+python-dotenv
+openai
+pymongo
+requests
+secure

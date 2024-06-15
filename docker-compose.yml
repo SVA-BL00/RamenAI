@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  auth_service:
+    build:
+      context: ./auth_service
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - MONGO_URI=mongodb://mongo:27017/
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DB=${MYSQL_DB}
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+      - mysql
+    networks:
+      - ramen_network  # Attach to the custom network
+
+  chat_service:
+    build:
+      context: ./chat_service
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - MONGO_URI=mongodb://mongo:27017/
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+    networks:
+      - ramen_network  # Attach to the custom network
+
+  mongo:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - ramen_network  # Attach to the custom network
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./auth_service/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - ramen_network  # Attach to the custom network
+
+networks:
+  ramen_network:
+    driver: bridge
